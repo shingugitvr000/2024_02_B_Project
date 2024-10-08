@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //PlayerState 모든 플레이어 상태의 기본이 되는 추상 클래스
-public abstract class PlayerState : MonoBehaviour
+public abstract class PlayerState
 {
     protected PlayerStateMachine stateMachine;        //상태 머신에 대한 참조 (이후 구현)
     protected PlayerController playerController;        //플레이어 컨트롤러에 대한 참조
