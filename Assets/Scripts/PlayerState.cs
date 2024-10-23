@@ -7,12 +7,14 @@ public abstract class PlayerState
 {
     protected PlayerStateMachine stateMachine;        //상태 머신에 대한 참조 (이후 구현)
     protected PlayerController playerController;        //플레이어 컨트롤러에 대한 참조
+    protected PlayerAnimationManager animationManager;  //애니메이션 매니저를 가져온다. 
 
     //생성자: 상태 머신과 플레이어 컨트롤러 참조 초기화
     public PlayerState(PlayerStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
         this.playerController = stateMachine.PlayerController;
+        this.animationManager = stateMachine.GetComponent<PlayerAnimationManager>();
     }
 
     //가상 메서드들 : 하위 클래스에서 필요에 따라 오버라이드
@@ -69,10 +71,14 @@ public class IdleState : PlayerState
 //MovingState : 플레이어가 이동하는 상태
 public class MovingState : PlayerState
 {
+    private bool isRunning;
     public MovingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Update()
     {
+        //달리기 입력 확인
+        isRunning = Input.GetKey(KeyCode.LeftShift);
+
         CheckTransitions();             //매 프레임마다 상태 전환 조건 체크 
     }
     public override void FixedUpdate()
