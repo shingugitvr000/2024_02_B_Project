@@ -26,7 +26,7 @@ public class BuildingDetector : MonoBehaviour
             lastPosition = transform.position;              //현재 위치를 마지막 위치로 업데이트 
         }
 
-        //가까운 아이템이 있고 E 키를 눌렀을 때 아이템 수집 
+        //가까운 아이템이 있고 F 키를 눌렀을 때 건설 
         if (currentNearbyBuilding != null && Input.GetKeyDown(KeyCode.F))
         {
             currentNearbyBuilding.StartConstruction(GetComponent<PlayerInventory>());         //PlayerInventroy를 참조하여 건설 시작 함수 호출 
